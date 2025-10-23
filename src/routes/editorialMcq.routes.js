@@ -17,7 +17,7 @@ router.get("/check/:editorialId", requireAuth, checkEditorialAttempt);
 router.get("/generate/:editorialId", getOrGenerateEditorialMCQs);
 router.get("/:editorialId", getMCQsForEditorial);
 router.post("/submit",requireAuth, submitEditorialMCQAnswers);
-router.delete("/reset/:userId/:editorialId", requireAuth, resetEditorialAttempt);
+router.delete("/reset/:userId/:editorialId", resetEditorialAttempt);
 
 
 export default router;
