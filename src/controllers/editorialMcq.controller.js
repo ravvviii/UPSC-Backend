@@ -136,11 +136,7 @@ export const resetEditorialAttempt = async (req, res, next) => {
   try {
     const { userId, editorialId } = req.params;
 
-    // 🧠 Optional security: only allow self-reset or admin
-    if (req.user.id.toString() !== userId.toString() && !req.user.roles?.includes("admin")) {
-      return res.status(403).json({ error: "Unauthorized reset attempt" });
-    }
-
+   
     const attempt = await MCQAttempt.findOneAndDelete({ userId, editorialId });
 
     if (!attempt) {
