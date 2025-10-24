@@ -16,6 +16,7 @@ import geminiRoutes from "./routes/gemini.routes.js";
 import rssRoutes from "./routes/rss.routes.js";
 import editorialRoutes from "./routes/editorial.routes.js";
 import editorialMcqRoutes from "./routes/editorialMcq.routes.js";
+import analyticsRoutes from "./routes/analytics.routes.js";
 dotenv.config();
 
 
@@ -44,6 +45,7 @@ app.use("/api/gemini", geminiRoutes);
 app.use("/api/rss", rssRoutes);
 app.use("/api/editorials", editorialRoutes);
 app.use("/api/editorial-mcqs", editorialMcqRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 
 
