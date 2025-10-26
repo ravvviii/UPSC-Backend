@@ -39,3 +39,37 @@ Content: ${content}
     throw new Error("Gemini failed to generate MCQs");
   }
 };
+
+
+
+
+
+export const evaluateAnswerWithGemini = async (question, answerText) => {
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+  const prompt = `
+You are an experienced UPSC examiner.
+Evaluate the following answer critically and return a JSON object with the following fields:
+{
+  "marks": number (0 to 10),
+  "feedback": string,
+  "suggestions": string[]
+}
+
+Question:
+${question}
+
+Answer:
+${answerText}
+`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const text = result.response.text().trim();
+    const clean = text.replace(/```(json)?/g, "").trim();
+    return JSON.parse(clean);
+  } catch (error) {
+    console.error("❌ Gemini evaluation error:", error);
+    throw new Error("Gemini failed to evaluate the answer");
+  }
+};
